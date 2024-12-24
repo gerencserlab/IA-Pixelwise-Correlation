@@ -1,0 +1,844 @@
+<IAPipeline Description="Image Analyst MKII XML 1.0" Version="1207">
+  <Pipeline Version="1207">
+    <Functions>
+      <fInput Caption="Input image" ID="0" PID="0" Description="Input image">
+        <Caption>Input image</Caption>
+        <Position Top="0" Left="866" Height="25" Width="72"/>
+        <Parameters>
+          <image ID="0" Type="Text" Value="[Actual window]"/>
+        </Parameters>
+        <Inputs Types="" IDs=""/>
+        <Outputs Types="P" IDs="61"/>
+      </fInput>
+      <fWienerFilterSmooth Caption="Wiener Filter Smooth" ID="1" PID="84" Description="Wiener Filter Smooth">
+        <Caption>Wiener Filter Smooth</Caption>
+        <Position Top="135" Left="323" Height="25" Width="118"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="3" SValue=""/>
+          <noise ID="1" Type="Real" Value="0.01" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="21"/>
+        <Outputs Types="P" IDs="2"/>
+      </fWienerFilterSmooth>
+      <fSetScaling Caption="Set scaling/color" ID="2" PID="3" Description="Set scaling/LUT">
+        <Caption>Set scaling/color</Caption>
+        <Position Top="173" Left="328" Height="25" Width="96"/>
+        <Parameters>
+          <lut ID="0" Type="Text" Value="Grayscale"/>
+          <type ID="1" Type="Text" Value="Percentile"/>
+          <pmin ID="2" Type="Real" Value="10" SValue=""/>
+          <pmax ID="3" Type="Real" Value="99.9" SValue=""/>
+          <fmin ID="4" Type="Real" Value="0" SValue=""/>
+          <fmax ID="5" Type="Real" Value="0" SValue=""/>
+          <gamma ID="6" Type="Real" Value="1.6" SValue=""/>
+          <color ID="7" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="1"/>
+        <Outputs Types="P" IDs="3"/>
+      </fSetScaling>
+      <fWriteBack Caption="Write back scaled values" ID="3" PID="46" Description="Write back scaled values">
+        <Caption>Write back scaled values</Caption>
+        <Position Top="217" Left="300" Height="25" Width="135"/>
+        <Parameters>
+          <range ID="0" Type="Real" Value="1000" SValue=""/>
+          <clip ID="1" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="2"/>
+        <Outputs Types="CCP" IDs="11;6;4"/>
+      </fWriteBack>
+      <fSetSegmentationClassifiers Caption="Set Segmentation Classifiers" ID="4" PID="48" Description="Set Segmentation Classifiers">
+        <Caption>Set Segmentation Classifiers</Caption>
+        <Position Top="287" Left="371" Height="25" Width="156"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Min"/>
+          <volume ID="1" Type="Integer" Value="6" SValue="=sqr(param)/4=6"/>
+          <surface ID="2" Type="Integer" Value="0" SValue=""/>
+          <maxarea ID="3" Type="Integer" Value="0" SValue=""/>
+          <maxperimeter ID="4" Type="Integer" Value="0" SValue=""/>
+          <maxdiameter ID="5" Type="Real" Value="0" SValue=""/>
+          <shapefactor ID="6" Type="Real" Value="0.4" SValue=""/>
+          <sphericalshapefactor ID="7" Type="Real" Value="0" SValue=""/>
+          <totalfileamentlength ID="8" Type="Integer" Value="0" SValue=""/>
+          <totalbranchpoints ID="9" Type="Integer" Value="0" SValue=""/>
+          <fiberlength ID="10" Type="Real" Value="0" SValue=""/>
+          <fiberbreadth ID="11" Type="Real" Value="0" SValue=""/>
+          <nearestneighbor ID="12" Type="Real" Value="0" SValue=""/>
+          <numberofneighbors ID="13" Type="Integer" Value="0" SValue=""/>
+          <distancetoedge ID="14" Type="Real" Value="0" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="3"/>
+        <Outputs Types="P" IDs="5"/>
+      </fSetSegmentationClassifiers>
+      <fSetSegmentationClassifiers Caption="Set Segmentation Classifiers" ID="5" PID="48" Description="Set Segmentation Classifiers">
+        <Caption>Set Segmentation Classifiers</Caption>
+        <Position Top="363" Left="372" Height="25" Width="156"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Max"/>
+          <volume ID="1" Type="Integer" Value="200" SValue="=8*sqr(param)=200"/>
+          <surface ID="2" Type="Integer" Value="0" SValue=""/>
+          <maxarea ID="3" Type="Integer" Value="0" SValue=""/>
+          <maxperimeter ID="4" Type="Integer" Value="0" SValue=""/>
+          <maxdiameter ID="5" Type="Real" Value="0" SValue=""/>
+          <shapefactor ID="6" Type="Real" Value="0" SValue=""/>
+          <sphericalshapefactor ID="7" Type="Real" Value="0" SValue=""/>
+          <totalfileamentlength ID="8" Type="Integer" Value="0" SValue=""/>
+          <totalbranchpoints ID="9" Type="Integer" Value="0" SValue=""/>
+          <fiberlength ID="10" Type="Real" Value="0" SValue=""/>
+          <fiberbreadth ID="11" Type="Real" Value="0" SValue=""/>
+          <nearestneighbor ID="12" Type="Real" Value="0" SValue=""/>
+          <numberofneighbors ID="13" Type="Integer" Value="0" SValue=""/>
+          <distancetoedge ID="14" Type="Real" Value="0" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="4"/>
+        <Outputs Types="P" IDs="15"/>
+      </fSetSegmentationClassifiers>
+      <fCopy Caption="Copy" ID="6" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="287" Left="105" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="3"/>
+        <Outputs Types="P" IDs="16"/>
+      </fCopy>
+      <fDetectNucleiConvolution Caption="Detect Nuclei Convolution" ID="7" PID="102" Description="Detect Nuclei Convolution">
+        <Caption>Detect Nuclei Convolution</Caption>
+        <Position Top="355" Left="28" Height="25" Width="140"/>
+        <Parameters>
+          <way ID="0" Type="Text" Value="Bright inside"/>
+          <id ID="1" Type="Integer" Value="5" SValue="=param=5"/>
+          <od ID="2" Type="Integer" Value="7" SValue="=param+2=7"/>
+        </Parameters>
+        <Inputs Types="P" IDs="16"/>
+        <Outputs Types="P" IDs="9"/>
+      </fDetectNucleiConvolution>
+      <fAdvSegmentSepSeed Caption="Secondary Watershed Segmentation" ID="8" PID="99" Description="Secondary Watershed Segmentation">
+        <Caption>Secondary Watershed Segmentation</Caption>
+        <Position Top="495" Left="256" Height="25" Width="193"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Max of marks"/>
+          <way ID="1" Type="Text" Value="Above"/>
+          <value ID="2" Type="Real" Value="0" SValue=""/>
+          <proctype ID="3" Type="Text" Value="Bound locally"/>
+          <value2 ID="4" Type="Real" Value="50" SValue=""/>
+          <method ID="5" Type="Text" Value="Watershed(distance)"/>
+          <connectivity ID="6" Type="Text" Value="Inf (3x3 rectangular)"/>
+          <separate ID="7" Type="Bool" Value="No"/>
+          <weld ID="8" Type="Bool" Value="Yes"/>
+          <evaluate ID="9" Type="Bool" Value="Yes"/>
+          <textoutput ID="10" Type="Bool" Value="No"/>
+          <keeporigmask ID="11" Type="Bool" Value="No"/>
+          <noedges ID="12" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="15;14"/>
+        <Outputs Types="CCP" IDs="17;18;64"/>
+      </fAdvSegmentSepSeed>
+      <fSetScaling Caption="Set scaling/LUT" ID="9" PID="3" Description="Set scaling/LUT">
+        <Caption>Set scaling/LUT</Caption>
+        <Position Top="397" Left="54" Height="25" Width="93"/>
+        <Parameters>
+          <lut ID="0" Type="Text" Value="Grayscale"/>
+          <type ID="1" Type="Text" Value="Percentile"/>
+          <pmin ID="2" Type="Real" Value="0" SValue=""/>
+          <pmax ID="3" Type="Real" Value="100" SValue=""/>
+          <fmin ID="4" Type="Real" Value="0" SValue=""/>
+          <fmax ID="5" Type="Real" Value="0" SValue=""/>
+          <gamma ID="6" Type="Real" Value="1.7" SValue=""/>
+          <color ID="7" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="7"/>
+        <Outputs Types="P" IDs="10"/>
+      </fSetScaling>
+      <fWriteBack Caption="Write back scaled values" ID="10" PID="46" Description="Write back scaled values">
+        <Caption>Write back scaled values</Caption>
+        <Position Top="443" Left="18" Height="25" Width="135"/>
+        <Parameters>
+          <range ID="0" Type="Real" Value="1000" SValue=""/>
+          <clip ID="1" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="9"/>
+        <Outputs Types="P" IDs="22"/>
+      </fWriteBack>
+      <fCopy Caption="Copy" ID="11" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="287" Left="280" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="3"/>
+        <Outputs Types="P" IDs="12"/>
+      </fCopy>
+      <fRename Caption="Rename Image" ID="12" PID="18" Description="Rename Image">
+        <Caption>Rename Image</Caption>
+        <Position Top="357" Left="237" Height="25" Width="90"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="102" SValue=""/>
+          <name ID="1" Type="Text" Value="intensities"/>
+        </Parameters>
+        <Inputs Types="P" IDs="11"/>
+        <Outputs Types="P" IDs="22"/>
+      </fRename>
+      <fAdvSegment Caption="Watershed Segmentation" ID="13" PID="78" Description="Watershed Segmentation">
+        <Caption>Watershed Segmentation</Caption>
+        <Position Top="519" Left="30" Height="25" Width="138"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Pixel value"/>
+          <way ID="1" Type="Text" Value="Above"/>
+          <value ID="2" Type="Real" Value="2" SValue=""/>
+          <proctype ID="3" Type="Text" Value="Bound locally"/>
+          <value2 ID="4" Type="Real" Value="50" SValue=""/>
+          <method ID="5" Type="Text" Value="Mark Seed"/>
+          <connectivity ID="6" Type="Text" Value="Inf (3x3 rectangular)"/>
+          <separate ID="7" Type="Bool" Value="Yes"/>
+          <weld ID="8" Type="Bool" Value="No"/>
+          <evaluate ID="9" Type="Bool" Value="Yes"/>
+          <textoutput ID="10" Type="Bool" Value="No"/>
+          <keeporigmask ID="11" Type="Bool" Value="No"/>
+          <noedges ID="12" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="22"/>
+        <Outputs Types="PC" IDs="14;23"/>
+      </fAdvSegment>
+      <fMorphological Caption="Morphological operator" ID="14" PID="13" Description="Morphological operator">
+        <Caption>Morphological operator</Caption>
+        <Position Top="559" Left="53" Height="25" Width="128"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Dilate"/>
+          <size ID="1" Type="Integer" Value="2" SValue="=param/2=2"/>
+          <shape ID="2" Type="Text" Value="Disc"/>
+        </Parameters>
+        <Inputs Types="P" IDs="13"/>
+        <Outputs Types="P" IDs="8"/>
+      </fMorphological>
+      <fSetSegmentationIntensityClassifiers Caption="Set Segmentation Intensity Classifiers" ID="15" PID="100" Description="Set Segmentation Intensity Classifiers">
+        <Caption>Set Segmentation Intensity Classifiers</Caption>
+        <Position Top="459" Left="265" Height="25" Width="198"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Min"/>
+          <mean ID="1" Type="Real" Value="800" SValue="=10*param=800"/>
+          <sum ID="2" Type="Real" Value="0" SValue=""/>
+          <sphmean ID="3" Type="Real" Value="0" SValue=""/>
+          <variance ID="4" Type="Real" Value="0" SValue=""/>
+          <varianceOverMean ID="5" Type="Real" Value="0" SValue=""/>
+          <SDOverMean ID="6" Type="Real" Value="0" SValue=""/>
+        </Parameters>
+        <Inputs Types="PP" IDs="5;23"/>
+        <Outputs Types="P" IDs="8"/>
+      </fSetSegmentationIntensityClassifiers>
+      <fRename Caption="Rename Image" ID="16" PID="18" Description="Rename Image">
+        <Caption>Rename Image</Caption>
+        <Position Top="323" Left="63" Height="25" Width="90"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="101" SValue=""/>
+          <name ID="1" Type="Text" Value="seeds"/>
+        </Parameters>
+        <Inputs Types="P" IDs="6"/>
+        <Outputs Types="P" IDs="7"/>
+      </fRename>
+      <fGetLinked Caption="Get Linked Channel" ID="17" PID="17" Description="Get Linked Channel">
+        <Caption>Get Linked Channel</Caption>
+        <Position Top="580" Left="379" Height="25" Width="109"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="101" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="8"/>
+        <Outputs Types="P" IDs="20"/>
+      </fGetLinked>
+      <fGetLinked Caption="Get Linked Channel" ID="18" PID="17" Description="Get Linked Channel">
+        <Caption>Get Linked Channel</Caption>
+        <Position Top="535" Left="485" Height="25" Width="109"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="102" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="8"/>
+        <Outputs Types="P" IDs="19"/>
+      </fGetLinked>
+      <fClose Caption="Close" ID="19" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="591" Left="529" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="18"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fClose Caption="Close" ID="20" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="625" Left="420" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="17"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fCopy Caption="Copy" ID="21" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="82" Left="430" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="62"/>
+        <Outputs Types="P" IDs="1"/>
+      </fCopy>
+      <fSetSegmentationIntensityClassifiers Caption="Set Segmentation Intensity Classifiers" ID="22" PID="100" Description="Set Segmentation Intensity Classifiers">
+        <Caption>Set Segmentation Intensity Classifiers</Caption>
+        <Position Top="481" Left="0" Height="25" Width="198"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Min"/>
+          <mean ID="1" Type="Real" Value="800" SValue="=10*param=800"/>
+          <sum ID="2" Type="Real" Value="0" SValue=""/>
+          <sphmean ID="3" Type="Real" Value="0" SValue=""/>
+          <variance ID="4" Type="Real" Value="0" SValue=""/>
+          <varianceOverMean ID="5" Type="Real" Value="0" SValue=""/>
+          <SDOverMean ID="6" Type="Real" Value="0" SValue=""/>
+        </Parameters>
+        <Inputs Types="PP" IDs="10;12"/>
+        <Outputs Types="P" IDs="13"/>
+      </fSetSegmentationIntensityClassifiers>
+      <fGetLinked Caption="Get Linked Channel" ID="23" PID="17" Description="Get Linked Channel">
+        <Caption>Get Linked Channel</Caption>
+        <Position Top="407" Left="259" Height="25" Width="109"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="102" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="13"/>
+        <Outputs Types="P" IDs="15"/>
+      </fGetLinked>
+      <fGetLinked Caption="Get Linked Channel" ID="24" PID="17" Description="Get Linked Channel">
+        <Caption>Get Linked Channel</Caption>
+        <Position Top="61" Left="677" Height="25" Width="109"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="61"/>
+        <Outputs Types="P" IDs="62"/>
+      </fGetLinked>
+      <fCopy Caption="Copy" ID="25" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="231" Left="901" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="55"/>
+        <Outputs Types="P" IDs="26"/>
+      </fCopy>
+      <f2DSavGol Caption="2D Savitzky-Golay filter" ID="26" PID="8" Description="2D Savitzky-Golay filter">
+        <Caption>2D Savitzky-Golay filter</Caption>
+        <Position Top="335" Left="965" Height="25" Width="129"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="7" SValue=""/>
+          <deriv ID="1" Type="Integer" Value="0" SValue=""/>
+          <polyorder ID="2" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="25"/>
+        <Outputs Types="CP" IDs="27;28"/>
+      </f2DSavGol>
+      <fImageArithmetic Caption="Image Arithmetic" ID="27" PID="19" Description="Image Arithmetic">
+        <Caption>Image Arithmetic</Caption>
+        <Position Top="373" Left="870" Height="25" Width="97"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="-"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="55;26"/>
+        <Outputs Types="CP" IDs="34;35"/>
+      </fImageArithmetic>
+      <fClose Caption="Close" ID="28" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="382" Left="1049" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="26"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fGetLinked Caption="Get Linked Channel" ID="29" PID="17" Description="Get Linked Channel">
+        <Caption>Get Linked Channel</Caption>
+        <Position Top="58" Left="1014" Height="25" Width="109"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="2" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="61"/>
+        <Outputs Types="P" IDs="63"/>
+      </fGetLinked>
+      <fCopy Caption="Copy" ID="30" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="242" Left="1246" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="57"/>
+        <Outputs Types="P" IDs="31"/>
+      </fCopy>
+      <f2DSavGol Caption="2D Savitzky-Golay filter" ID="31" PID="8" Description="2D Savitzky-Golay filter">
+        <Caption>2D Savitzky-Golay filter</Caption>
+        <Position Top="341" Left="1251" Height="25" Width="129"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="7" SValue=""/>
+          <deriv ID="1" Type="Integer" Value="0" SValue=""/>
+          <polyorder ID="2" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="30"/>
+        <Outputs Types="CP" IDs="32;33"/>
+      </f2DSavGol>
+      <fImageArithmetic Caption="Image Arithmetic" ID="32" PID="19" Description="Image Arithmetic">
+        <Caption>Image Arithmetic</Caption>
+        <Position Top="405" Left="1155" Height="25" Width="97"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="-"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="57;31"/>
+        <Outputs Types="CP" IDs="34;36"/>
+      </fImageArithmetic>
+      <fClose Caption="Close" ID="33" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="387" Left="1334" Height="25" Width="45"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="31"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fImageArithmetic Caption="Image Arithmetic" ID="34" PID="19" Description="Image Arithmetic">
+        <Caption>Image Arithmetic</Caption>
+        <Position Top="467" Left="1021" Height="25" Width="97"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="*"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="27;32"/>
+        <Outputs Types="P" IDs="38"/>
+      </fImageArithmetic>
+      <fArithmeticS Caption="Scalar Arithmetic" ID="35" PID="54" Description="Scalar Arithmetic">
+        <Caption>Scalar Arithmetic</Caption>
+        <Position Top="501" Left="865" Height="25" Width="98"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="SQR"/>
+          <value ID="1" Type="Real" Value="0" SValue=""/>
+          <framerange ID="2" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="P" IDs="27"/>
+        <Outputs Types="P" IDs="37"/>
+      </fArithmeticS>
+      <fArithmeticS Caption="Scalar Arithmetic" ID="36" PID="54" Description="Scalar Arithmetic">
+        <Caption>Scalar Arithmetic</Caption>
+        <Position Top="495" Left="1207" Height="25" Width="98"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="SQR"/>
+          <value ID="1" Type="Real" Value="0" SValue=""/>
+          <framerange ID="2" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="P" IDs="32"/>
+        <Outputs Types="P" IDs="39"/>
+      </fArithmeticS>
+      <f2DSavGol Caption="2D Savitzky-Golay filter" ID="37" PID="8" Description="2D Savitzky-Golay filter">
+        <Caption>2D Savitzky-Golay filter</Caption>
+        <Position Top="530" Left="846" Height="25" Width="129"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="7" SValue=""/>
+          <deriv ID="1" Type="Integer" Value="0" SValue=""/>
+          <polyorder ID="2" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="35"/>
+        <Outputs Types="CP" IDs="40;49"/>
+      </f2DSavGol>
+      <f2DSavGol Caption="2D Savitzky-Golay filter" ID="38" PID="8" Description="2D Savitzky-Golay filter">
+        <Caption>2D Savitzky-Golay filter</Caption>
+        <Position Top="526" Left="1010" Height="25" Width="129"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="7" SValue=""/>
+          <deriv ID="1" Type="Integer" Value="0" SValue=""/>
+          <polyorder ID="2" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="34"/>
+        <Outputs Types="P" IDs="42"/>
+      </f2DSavGol>
+      <f2DSavGol Caption="2D Savitzky-Golay filter" ID="39" PID="8" Description="2D Savitzky-Golay filter">
+        <Caption>2D Savitzky-Golay filter</Caption>
+        <Position Top="534" Left="1186" Height="25" Width="129"/>
+        <Parameters>
+          <width ID="0" Type="Integer" Value="7" SValue=""/>
+          <deriv ID="1" Type="Integer" Value="0" SValue=""/>
+          <polyorder ID="2" Type="Integer" Value="1" SValue=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="36"/>
+        <Outputs Types="P" IDs="40"/>
+      </f2DSavGol>
+      <fImageAritmeticsIP Caption="Image Arithmetic In Place" ID="40" PID="61" Description="Image Arithmetic In Place">
+        <Caption>Image Arithmetic In Place</Caption>
+        <Position Top="595" Left="915" Height="25" Width="139"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="*"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="39;37"/>
+        <Outputs Types="P" IDs="41"/>
+      </fImageAritmeticsIP>
+      <fArithmeticS Caption="Scalar Arithmetic" ID="41" PID="54" Description="Scalar Arithmetic">
+        <Caption>Scalar Arithmetic</Caption>
+        <Position Top="647" Left="982" Height="25" Width="98"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="SQRT"/>
+          <value ID="1" Type="Real" Value="0" SValue=""/>
+          <framerange ID="2" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="P" IDs="40"/>
+        <Outputs Types="CP" IDs="42;50"/>
+      </fArithmeticS>
+      <fImageAritmeticsIP Caption="Image Arithmetic In Place" ID="42" PID="61" Description="Image Arithmetic In Place">
+        <Caption>Image Arithmetic In Place</Caption>
+        <Position Top="711" Left="1049" Height="25" Width="139"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="/"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="38;41"/>
+        <Outputs Types="P" IDs="51"/>
+      </fImageAritmeticsIP>
+      <fCopy Caption="Copy" ID="43" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="242" Left="618" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="55"/>
+        <Outputs Types="P" IDs="46"/>
+      </fCopy>
+      <fCopy Caption="Copy" ID="44" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="246" Left="1026" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="57"/>
+        <Outputs Types="P" IDs="45"/>
+      </fCopy>
+      <fWriteBack Caption="Write back scaled values" ID="45" PID="46" Description="Write back scaled values">
+        <Caption>Write back scaled values</Caption>
+        <Position Top="374" Left="714" Height="25" Width="135"/>
+        <Parameters>
+          <range ID="0" Type="Real" Value="127" SValue=""/>
+          <clip ID="1" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="44"/>
+        <Outputs Types="CP" IDs="47;48"/>
+      </fWriteBack>
+      <fWriteBack Caption="Write back scaled values" ID="46" PID="46" Description="Write back scaled values">
+        <Caption>Write back scaled values</Caption>
+        <Position Top="371" Left="562" Height="25" Width="135"/>
+        <Parameters>
+          <range ID="0" Type="Real" Value="127" SValue=""/>
+          <clip ID="1" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="43"/>
+        <Outputs Types="P" IDs="47"/>
+      </fWriteBack>
+      <fImageAritmeticsIP Caption="Image Arithmetic In Place" ID="47" PID="61" Description="Image Arithmetic In Place">
+        <Caption>Image Arithmetic In Place</Caption>
+        <Position Top="435" Left="597" Height="25" Width="139"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="+"/>
+          <framerange ID="1" Type="Text" Value="All"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="46;45"/>
+        <Outputs Types="P" IDs="53"/>
+      </fImageAritmeticsIP>
+      <fClose Caption="Close" ID="48" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="429" Left="802" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="45"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fClose Caption="Close" ID="49" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="574" Left="826" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="37"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fClose Caption="Close" ID="50" PID="22" Description="Close">
+        <Caption>Close</Caption>
+        <Position Top="689" Left="962" Height="25" Width="44"/>
+        <Parameters>
+          <target ID="0" Type="Text" Value="Image"/>
+        </Parameters>
+        <Inputs Types="P" IDs="41"/>
+        <Outputs Types="" IDs=""/>
+      </fClose>
+      <fIMD Caption="Attach Intensity Gating" ID="51" PID="9" Description="Attach Intensity Gating">
+        <Caption>Attach Intensity Gating</Caption>
+        <Position Top="755" Left="785" Height="25" Width="124"/>
+        <Parameters>
+          <synchronized ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="42;53"/>
+        <Outputs Types="P" IDs="52"/>
+      </fIMD>
+      <fSetScaling Caption="Set scaling/LUT" ID="52" PID="3" Description="Set scaling/LUT">
+        <Caption>Set scaling/LUT</Caption>
+        <Position Top="810" Left="809" Height="25" Width="93"/>
+        <Parameters>
+          <lut ID="0" Type="Text" Value="Heatmap"/>
+          <type ID="1" Type="Text" Value="Fixed value"/>
+          <pmin ID="2" Type="Real" Value="1" SValue=""/>
+          <pmax ID="3" Type="Real" Value="99" SValue=""/>
+          <fmin ID="4" Type="Real" Value="-0.8" SValue=""/>
+          <fmax ID="5" Type="Real" Value="0.8" SValue=""/>
+          <gamma ID="6" Type="Real" Value="1" SValue=""/>
+          <color ID="7" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="51"/>
+        <Outputs Types="C" IDs="58"/>
+      </fSetScaling>
+      <fSetScaling Caption="Set scaling/LUT" ID="53" PID="3" Description="Set scaling/LUT">
+        <Caption>Set scaling/LUT</Caption>
+        <Position Top="461" Left="622" Height="25" Width="93"/>
+        <Parameters>
+          <lut ID="0" Type="Text" Value="Grayscale"/>
+          <type ID="1" Type="Text" Value="Fixed value"/>
+          <pmin ID="2" Type="Real" Value="1" SValue=""/>
+          <pmax ID="3" Type="Real" Value="99" SValue=""/>
+          <fmin ID="4" Type="Real" Value="0" SValue=""/>
+          <fmax ID="5" Type="Real" Value="200" SValue=""/>
+          <gamma ID="6" Type="Real" Value="1.6" SValue=""/>
+          <color ID="7" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="47"/>
+        <Outputs Types="P" IDs="51"/>
+      </fSetScaling>
+      <fThreshold Caption="Threshold" ID="54" PID="14" Description="Threshold">
+        <Caption>Threshold</Caption>
+        <Position Top="138" Left="728" Height="25" Width="64"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Pixel value"/>
+          <way ID="1" Type="Text" Value="Mask Below"/>
+          <value ID="2" Type="Real" Value="0" SValue=""/>
+          <value2 ID="3" Type="Real" Value="50" SValue=""/>
+          <proctype ID="4" Type="Text" Value="None"/>
+          <keeporigmask ID="5" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="62"/>
+        <Outputs Types="P" IDs="55"/>
+      </fThreshold>
+      <fInpaintMask Caption="Inpaint Mask" ID="55" PID="94" Description="Inpaint Mask">
+        <Caption>Inpaint Mask</Caption>
+        <Position Top="195" Left="789" Height="25" Width="77"/>
+        <Parameters>
+          <radius ID="0" Type="Real" Value="0" SValue=""/>
+          <method ID="1" Type="Text" Value="Telea"/>
+        </Parameters>
+        <Inputs Types="P" IDs="54"/>
+        <Outputs Types="CCC" IDs="43;25;27"/>
+      </fInpaintMask>
+      <fThreshold Caption="Threshold" ID="56" PID="14" Description="Threshold">
+        <Caption>Threshold</Caption>
+        <Position Top="154" Left="1122" Height="25" Width="64"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Pixel value"/>
+          <way ID="1" Type="Text" Value="Mask Below"/>
+          <value ID="2" Type="Real" Value="0" SValue=""/>
+          <value2 ID="3" Type="Real" Value="50" SValue=""/>
+          <proctype ID="4" Type="Text" Value="None"/>
+          <keeporigmask ID="5" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="63"/>
+        <Outputs Types="P" IDs="57"/>
+      </fThreshold>
+      <fInpaintMask Caption="Inpaint Mask" ID="57" PID="94" Description="Inpaint Mask">
+        <Caption>Inpaint Mask</Caption>
+        <Position Top="211" Left="1129" Height="25" Width="77"/>
+        <Parameters>
+          <radius ID="0" Type="Real" Value="0" SValue=""/>
+          <method ID="1" Type="Text" Value="Telea"/>
+        </Parameters>
+        <Inputs Types="P" IDs="56"/>
+        <Outputs Types="CCC" IDs="30;44;32"/>
+      </fInpaintMask>
+      <fPlotSegmentIntensities Caption="Plot Segment Intensities" ID="58" PID="69" Description="Plot Segment Intensities">
+        <Caption>Plot Segment Intensities</Caption>
+        <Position Top="908" Left="169" Height="25" Width="132"/>
+        <Parameters>
+          <dfperf ID="0" Type="Bool" Value="No"/>
+          <resample ID="1" Type="Bool" Value="No"/>
+          <type ID="2" Type="Text" Value="Mean"/>
+          <allMean ID="3" Type="Bool" Value="Yes"/>
+          <allMedian ID="4" Type="Bool" Value="No"/>
+          <advnorm ID="5" Type="Text" Value="None"/>
+          <histogram ID="6" Type="Text" Value="None"/>
+          <savename ID="7" Type="Text" Value=""/>
+          <save ID="8" Type="Bool" Value="No"/>
+          <saveconfirm ID="9" Type="Bool" Value="No"/>
+          <ranges ID="10" Type="Text" Value=""/>
+          <rates ID="11" Type="Bool" Value="No"/>
+          <ratesnorm ID="12" Type="Bool" Value="No"/>
+          <yonly ID="13" Type="Bool" Value="No"/>
+          <mdoutput ID="14" Type="Bool" Value="Yes"/>
+          <channelrange ID="15" Type="Text" Value="All"/>
+          <plateoutput ID="16" Type="Bool" Value="Yes"/>
+          <stagetocolumn ID="17" Type="Bool" Value="No"/>
+          <singlechannel ID="18" Type="Bool" Value="No"/>
+          <forcenewrow ID="19" Type="Bool" Value="No"/>
+          <histogrambins ID="20" Type="Integer" Value="100" SValue=""/>
+          <histogramrange ID="21" Type="Text" Value="-1-1"/>
+          <continuous ID="22" Type="Bool" Value="No"/>
+          <constrainActiveROI ID="23" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="64;52"/>
+        <Outputs Types="" IDs=""/>
+      </fPlotSegmentIntensities>
+      <fCopy Caption="Copy" ID="59" PID="4" Description="Copy">
+        <Caption>Copy</Caption>
+        <Position Top="685" Left="570" Height="25" Width="42"/>
+        <Parameters>
+          <linked ID="0" Type="Bool" Value="Yes"/>
+        </Parameters>
+        <Inputs Types="P" IDs="63"/>
+        <Outputs Types="C" IDs="60"/>
+      </fCopy>
+      <fPlotSegmentIntensities Caption="Plot Segment Intensities" ID="60" PID="69" Description="Plot Segment Intensities">
+        <Caption>Plot Segment Intensities</Caption>
+        <Position Top="841" Left="360" Height="25" Width="132"/>
+        <Parameters>
+          <dfperf ID="0" Type="Bool" Value="No"/>
+          <resample ID="1" Type="Bool" Value="No"/>
+          <type ID="2" Type="Text" Value="Mean"/>
+          <allMean ID="3" Type="Bool" Value="Yes"/>
+          <allMedian ID="4" Type="Bool" Value="No"/>
+          <advnorm ID="5" Type="Text" Value="None"/>
+          <histogram ID="6" Type="Text" Value="None"/>
+          <savename ID="7" Type="Text" Value=""/>
+          <save ID="8" Type="Bool" Value="No"/>
+          <saveconfirm ID="9" Type="Bool" Value="No"/>
+          <ranges ID="10" Type="Text" Value=""/>
+          <rates ID="11" Type="Bool" Value="No"/>
+          <ratesnorm ID="12" Type="Bool" Value="No"/>
+          <yonly ID="13" Type="Bool" Value="No"/>
+          <mdoutput ID="14" Type="Bool" Value="Yes"/>
+          <channelrange ID="15" Type="Text" Value="All"/>
+          <plateoutput ID="16" Type="Bool" Value="Yes"/>
+          <stagetocolumn ID="17" Type="Bool" Value="No"/>
+          <singlechannel ID="18" Type="Bool" Value="No"/>
+          <forcenewrow ID="19" Type="Bool" Value="No"/>
+          <histogrambins ID="20" Type="Integer" Value="100" SValue=""/>
+          <histogramrange ID="21" Type="Text" Value="0-8000"/>
+          <continuous ID="22" Type="Bool" Value="No"/>
+          <constrainActiveROI ID="23" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="PP" IDs="65;59"/>
+        <Outputs Types="" IDs=""/>
+      </fPlotSegmentIntensities>
+      <fLoadROIs Caption="Load ROIs" ID="61" PID="45" Description="Load ROIs">
+        <Caption>Load ROIs</Caption>
+        <Position Top="42" Left="866" Height="25" Width="69"/>
+        <Parameters>
+          <openROI ID="0" Type="Text" Value="=%LoadPositionName%.roi"/>
+          <askfilename ID="1" Type="Bool" Value="No"/>
+          <replace ID="2" Type="Bool" Value="No"/>
+        </Parameters>
+        <Inputs Types="P" IDs="0"/>
+        <Outputs Types="CC" IDs="24;29"/>
+      </fLoadROIs>
+      <fApplyROIMask Caption="Mask ROIs" ID="62" PID="27" Description="Mask ROIs">
+        <Caption>Mask ROIs</Caption>
+        <Position Top="86" Left="700" Height="25" Width="70"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Inside"/>
+          <value ID="1" Type="Text" Value="MASK"/>
+          <currentframe ID="2" Type="Bool" Value="Yes"/>
+          <allROIs ID="3" Type="Bool" Value="Yes"/>
+          <annotations ID="4" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="24"/>
+        <Outputs Types="CP" IDs="21;54"/>
+      </fApplyROIMask>
+      <fApplyROIMask Caption="Mask ROIs" ID="63" PID="27" Description="Mask ROIs">
+        <Caption>Mask ROIs</Caption>
+        <Position Top="116" Left="1116" Height="25" Width="70"/>
+        <Parameters>
+          <type ID="0" Type="Text" Value="Inside"/>
+          <value ID="1" Type="Text" Value="MASK"/>
+          <currentframe ID="2" Type="Bool" Value="Yes"/>
+          <allROIs ID="3" Type="Bool" Value="Yes"/>
+          <annotations ID="4" Type="Text" Value=""/>
+        </Parameters>
+        <Inputs Types="P" IDs="29"/>
+        <Outputs Types="PC" IDs="56;59"/>
+      </fApplyROIMask>
+      <fRename Caption="Rename Image" ID="64" PID="18" Description="Rename Image">
+        <Caption>Rename Image</Caption>
+        <Position Top="715" Left="164" Height="25" Width="90"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="1" SValue=""/>
+          <name ID="1" Type="Text" Value="Correlation"/>
+        </Parameters>
+        <Inputs Types="P" IDs="8"/>
+        <Outputs Types="CP" IDs="58;65"/>
+      </fRename>
+      <fRename Caption="Rename Image" ID="65" PID="18" Description="Rename Image">
+        <Caption>Rename Image</Caption>
+        <Position Top="758" Left="270" Height="25" Width="90"/>
+        <Parameters>
+          <channel ID="0" Type="Integer" Value="2" SValue=""/>
+          <name ID="1" Type="Text" Value="Intensity"/>
+        </Parameters>
+        <Inputs Types="P" IDs="64"/>
+        <Outputs Types="C" IDs="60"/>
+      </fRename>
+    </Functions>
+  </Pipeline>
+  <Parameters Version="1207">
+    <Caption>Pixelwise correlation with segmentation</Caption>
+    <DesignVersion>1</DesignVersion>
+    <Description>Two-channel wide-field or confocal microscopic recordings of punctate immunofluorescence, are analyzed for colocalization of the two channels over objects marked in the first channel. In addition, intensities of objects in the second channel are measured. Use this pipeline with the Multi-Dimensional Open Dialog set up for high pass filtering for aggregates, stitching and maximum intensity projection. For high pass filtering select “Spatial Filtering” in the Open tab, and “mitofilter.flt”, Preserve Edges and Absolute in the Spatial Filter tab of the Multi-Dimensional Open Dialog. Select Maximum intensity (or Mean Intensity) for projection in the Settings tab. For working with Revvity Operetta CLS images, use all background corrections off (the spatial filtering removes background), and manual tiling to avoid masked edges. Spatial filtering is not compatible with masking.</Description>
+    <Parameters>
+      <param ID="0" UID="58975909" Caption="Channel Number (will be segmented)" Type="Integer" Value="1" Constraints="0-2147483647" ErrorMessage="Channel Number" Hint="Channel number as shown during loading. This will be used for segmentation and cross-correlation.">
+        <link Caption="Get Linked Channel::Channel Number" ID="24" paramID="0" paramName="channel"/>
+      </param>
+      <param ID="1" UID="94660247" Caption="Channel Number (will be measured)" Type="Integer" Value="2" Constraints="0-2147483647" ErrorMessage="Channel Number" Hint="Channel number as shown during loading. This will be used for intensity measurement and cross-correlation.">
+        <link Caption="Get Linked Channel::Channel Number" ID="29" paramID="0" paramName="channel"/>
+      </param>
+      <param ID="2" UID="498282" Caption="Approximate aggregate diameter" Type="Integer" Value="5" Constraints="&gt;1" ErrorMessage="Inner diameter is in pixels and must be a positive integer." Hint="Diameter in pixels">
+        <link Caption="Detect Nuclei Convolution::Inner diameter" ID="7" paramID="1" paramName="id"/>
+        <link Caption="Detect Nuclei Convolution::Outer diameter" ID="7" paramID="2" paramName="od"/>
+        <link Caption="Morphological operator::Size" ID="14" paramID="1" paramName="size"/>
+        <link Caption="Set Segmentation Classifiers::Volume" ID="4" paramID="1" paramName="volume"/>
+        <link Caption="Set Segmentation Classifiers::Volume (1)" ID="5" paramID="1" paramName="volume"/>
+      </param>
+      <param ID="3" UID="498284" Caption="Debris cutoff (percentile)" Type="Real" Value="99.9" Constraints="-1-100" ErrorMessage="Maximal percentile must be between 0 and 100 and must be larger than minimal percentile. Alternatively, -1 ovverrides percentile with fixed value set below." Hint="This percentile of the image histogram sets the intensity value where the maximum of the Look Up Table (LUT) is scaled. Use -1 to override this with fixed value set below ant &quot;Max value&quot;.">
+        <link Caption="Set scaling/color::Max percentile" ID="2" paramID="3" paramName="pmax"/>
+      </param>
+      <param ID="4" UID="498285" Caption="Minimum aggregate fluorescence (%)" Type="Real" Value="80" Constraints="" ErrorMessage="" Hint="Objects dimmer than this in filtered and 1-1000 rescaled images will be rejected. Increase this value if debris dimmer than the cells is detected. ">
+        <link Caption="Set Segmentation Intensity Classifiers::Mean Intensity" ID="15" paramID="1" paramName="mean"/>
+        <link Caption="Set Segmentation Intensity Classifiers::Mean Intensity (1)" ID="22" paramID="1" paramName="mean"/>
+      </param>
+      <param ID="5" UID="498286" Caption="Aggregate boundaries (% of max fluorescence)" Type="Real" Value="50" Constraints="" ErrorMessage="" Hint="Objects dimmer than this in filtered rescaled projection images will be rejected. Increase this value if debris dimmer than the cells is detected.">
+        <link Caption="Secondary Watershed Segmentation::Determine boundaries at" ID="8" paramID="4" paramName="value2"/>
+      </param>
+      <param ID="6" UID="528811" Caption="Weld segments into round objects" Type="Bool" Value="Yes" Constraints="" ErrorMessage="" Hint="Weld touching segments if they form a rounder object together. Use this to avoid objects fragmenting into multiple segments.">
+        <link Caption="Secondary Watershed Segmentation::Weld segments into round objects" ID="8" paramID="8" paramName="weld"/>
+      </param>
+      <param ID="7" UID="17011349" Caption="Minimum shape factor" Type="Real" Value="0.4" Constraints="&gt;0" ErrorMessage="Shape factor must be &gt;0 or 0 for not checking." Hint="1 for disc, smaller for irregular shapes. 0 for not checking">
+        <link Caption="Set Segmentation Classifiers::Shape factor" ID="4" paramID="6" paramName="shapefactor"/>
+      </param>
+      <param ID="8" UID="69612563" Caption="Pearsons correlation: Window Width" Type="Integer" Value="7" Constraints="&gt;2" ErrorMessage="Window width must be at least %d and smaller than the smallest dimension of the image" Hint="This pixels diameter value should be slightly larger than the objects of interest. Pearson's correlation will be calculated around each pixel, within this quadrangular window centered on the pixel.">
+        <link Caption="2D Savitzky-Golay filter::Window Width" ID="26" paramID="0" paramName="width"/>
+        <link Caption="2D Savitzky-Golay filter::Window Width (1)" ID="31" paramID="0" paramName="width"/>
+        <link Caption="2D Savitzky-Golay filter::Window Width (2)" ID="37" paramID="0" paramName="width"/>
+        <link Caption="2D Savitzky-Golay filter::Window Width (3)" ID="38" paramID="0" paramName="width"/>
+        <link Caption="2D Savitzky-Golay filter::Window Width (4)" ID="39" paramID="0" paramName="width"/>
+      </param>
+    </Parameters>
+  </Parameters>
+  <Options Version="1207">
+    <usesexcel Value="false"/>
+    <warnrefimage Value="false"/>
+    <warnrefimagemsg Value=""/>
+    <matrixsavedef Value="false"/>
+  </Options>
+</IAPipeline>

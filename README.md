@@ -1,9 +1,9 @@
-# Title
+# Pixelwise coross-correlation calculation for analysis of Huntingtin aggregates
 Description.  
-[This repository](https://github.com/gerencserlab/IATemplate/) contains custom image analysis pipelines for Image Analyst MKII, used in the following publication: currently under embargo    
+[This repository](https://github.com/gerencserlab/IATemplate/) contains custom image analysis pipelines for Image Analyst MKII    
 
 ## List of pipelines
-* [BLAH](blah.md)
+* [Pixelwise correlation with segmentation](Pixelwise_correlation_with_segmentation.md)
 
 ## How to use
 To open and edit *.ips (XML) Image Processing Pipeline files download [Image Analyst MKII for Windows](https://www.imageanalyst.net/downloads/?item=recent/imageanalystMKII64.msi).
@@ -15,3 +15,4 @@ To open and edit *.ips (XML) Image Processing Pipeline files download [Image Ana
 * Note: you may download individual pipelines and add them to the Documents\Image Analyst\My Pipelines
 
 [Gerencser Lab on Github](https://github.com/gerencserlab)
+
