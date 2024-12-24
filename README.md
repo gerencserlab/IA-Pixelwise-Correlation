@@ -1,8 +1,9 @@
-# Pixelwise coross-correlation calculation for analysis of Huntingtin aggregates
-Description.  
+# Image analysis pipelines for analysis neuronal proteinn aggregates
+These pipelines use a combination of morphological segmentation, pixel classifier, intensity measurments and cross correlation analysis to quantify various spects of intracellular and intranuclear protein aggregates.  
 [This repository](https://github.com/gerencserlab/IATemplate/) contains custom image analysis pipelines for Image Analyst MKII    
 
 ## List of pipelines
+* [Measure intranuclear aggregates and stain intensities in nuclei and dendrites with Labkit segmentation](Measure_intranuclear_aggregates_and_stain_intensities_in_nuclei_and_dendrites_with_Labkit_segmentation.md)
 * [Pixelwise correlation with segmentation](Pixelwise_correlation_with_segmentation.md)
 
 ## How to use
@@ -15,4 +16,5 @@ To open and edit *.ips (XML) Image Processing Pipeline files download [Image Ana
 * Note: you may download individual pipelines and add them to the Documents\Image Analyst\My Pipelines
 
 [Gerencser Lab on Github](https://github.com/gerencserlab)
+
 
